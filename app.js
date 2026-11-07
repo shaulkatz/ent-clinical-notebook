@@ -76,7 +76,8 @@ function home(){
     const s=stats(questionsOf(set.id));
     return '<li><a href="#exams/'+set.id+'"><span>'+safe(set.title)+'</span>'+meter(s,set.title)+'<small>'+statLine(s)+'</small></a></li>';
   }).join('');
-  main.innerHTML='<section class="opening"><div><p class="eyebrow">מחברת לקראת הסבב והבחינה</p><h1>רפואת אף,<br>אוזן וגרון</h1><p class="lede">סיכומים לקריאה ותרגול לפי נושא, עם דגש על ההחלטות שמקבלים במרפאה ובמיון.</p><a class="primary" href="#topic/neck">להתחלת הלימוד <span aria-hidden="true">←</span></a></div><figure class="cover" aria-hidden="true"><svg viewBox="0 0 420 315" fill="none"><circle cx="210" cy="153" r="122"/><path d="M191 60C234 46 270 63 285 98c8 18 8 31 10 45l27 33c4 5 1 11-5 12l-20 3-2 30c-1 17-13 24-27 24h-28l-5 36M150 283l18-53c-5-21-22-38-31-62-17-44-3-88 38-105m-7 91c-6-24 16-39 34-29 16 9 12 27 1 37-6 6-5 15-14 18-12 3-23-7-17-16m13-15c-1-9 9-12 14-5m63 8 26-2m-28 13 25 1m-30 31 26 4m-51 29 12 23"/><path class="guide-lines" d="M42 150h120m137 13h76m-128 61h105"/><circle class="point" cx="42" cy="150" r="4"/><circle class="point" cx="375" cy="163" r="4"/><circle class="point" cx="352" cy="224" r="4"/></svg><figcaption>אוזן · אף · גרון</figcaption></figure></section>'+progressPanel()+'<div class="home-grid"><section><h2>נושאי הקורס</h2><ol class="topic-list">'+rows+'</ol></section><aside class="exam-panel"><p class="eyebrow">מסלול תרגול</p><h2>שחזורי בחינות</h2><p>בחני פתיחה ושחזורים, לפי הסדר שבו הופיעו במקור. בסוף כל שאלה מופיעה הפניה למקור.</p><ul class="set-list">'+sets+'</ul><a href="#exams">לכל השחזורים <span aria-hidden="true">←</span></a></aside></div>';
+  main.innerHTML='<section class="opening"><div><p class="eyebrow">מחברת לקראת הסבב והבחינה</p><h1>רפואת אף,<br>אוזן וגרון</h1><p class="lede">סיכומים לקריאה ותרגול לפי נושא, עם דגש על ההחלטות שמקבלים במרפאה ובמיון.</p><a class="primary" href="#topic/neck">להתחלת הלימוד <span aria-hidden="true">←</span></a></div><figure class="cover" aria-hidden="true"><svg viewBox="0 0 420 315" fill="none"><circle cx="210" cy="153" r="122"/><path d="M191 60C234 46 270 63 285 98c8 18 8 31 10 45l27 33c4 5 1 11-5 12l-20 3-2 30c-1 17-13 24-27 24h-28l-5 36M150 283l18-53c-5-21-22-38-31-62-17-44-3-88 38-105m-7 91c-6-24 16-39 34-29 16 9 12 27 1 37-6 6-5 15-14 18-12 3-23-7-17-16m13-15c-1-9 9-12 14-5m63 8 26-2m-28 13 25 1m-30 31 26 4m-51 29 12 23"/><path class="guide-lines" d="M42 150h120m137 13h76m-128 61h105"/><circle class="point" cx="42" cy="150" r="4"/><circle class="point" cx="375" cy="163" r="4"/><circle class="point" cx="352" cy="224" r="4"/></svg><figcaption>אוזן · אף · גרון</figcaption></figure></section>'+progressPanel()+'<div class="home-grid"><section><div class="list-head"><h2>נושאי הקורס</h2><form class="search-form compact" role="search" id="home-search"><label for="home-q" class="visually-hidden">חיפוש בסיכומים ובשאלות</label><input id="home-q" type="search" placeholder="חיפוש בסיכומים ובשאלות" autocomplete="off"><button type="submit" class="secondary">חיפוש</button></form></div><ol class="topic-list">'+rows+'</ol></section><aside class="exam-panel"><p class="eyebrow">מסלול תרגול</p><h2>שחזורי בחינות</h2><p>בחני פתיחה ושחזורים, לפי הסדר שבו הופיעו במקור. בסוף כל שאלה מופיעה הפניה למקור.</p><ul class="set-list">'+sets+'</ul><a href="#exams">לכל השחזורים <span aria-hidden="true">←</span></a></aside></div>';
+  document.getElementById('home-search').onsubmit=e=>{e.preventDefault();const v=document.getElementById('home-q').value.trim();location.hash='#search/'+encodeURIComponent(v);};
   const reset=document.getElementById('reset-progress');
   if(reset)reset.onclick=()=>{
     if(!confirm('למחוק את כל ההתקדמות, התשובות והסימונים שנשמרו בדפדפן הזה?'))return;
@@ -312,24 +313,68 @@ document.addEventListener('keydown',event=>{
   const next=stage.querySelector('#next');
   if(next&&event.key==='Enter'&&!target.closest('button,a')){event.preventDefault();next.click();}
 });
+function normalize(t){return String(t).toLowerCase().replace(/[\u0591-\u05C7]/g,'').replace(/[״"׳'־\-]/g,' ').replace(/\s+/g,' ');}
+function snippet(text,terms){
+  const n=normalize(text);let at=-1;
+  for(const term of terms){const i=n.indexOf(term);if(i>=0&&(at<0||i<at))at=i;}
+  const start=Math.max(0,at-60),raw=text.slice(start,start+220);
+  let html=safe((start>0?'…':'')+raw+(start+220<text.length?'…':''));
+  for(const term of terms){if(term.length<2)continue;const re=new RegExp('('+term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');html=html.replace(re,'<mark>$1</mark>');}
+  return html;
+}
+function searchPage(query){
+  activeTopic='search';
+  const q=decodeURIComponent(query||'');
+  main.innerHTML='<a class="back" href="#home">חזרה לנושאים</a><header class="chapter-header"><h1>חיפוש</h1></header><form class="search-form" role="search"><label for="search-input" class="visually-hidden">חיפוש בסיכומים ובשאלות</label><input id="search-input" type="search" name="q" value="'+safe(q)+'" placeholder="למשל: כולסטאטומה, Chandler, Weber" autocomplete="off"><button class="primary" type="submit">חיפוש</button></form><div id="results" aria-live="polite"></div>';
+  const form=main.querySelector('form'),input=form.q,results=main.querySelector('#results');
+  function run(text){
+    const terms=normalize(text).trim().split(' ').filter(t=>t.length>1);
+    if(!terms.length){results.innerHTML='<p class="muted">הקלידו לפחות מילה אחת של שתי אותיות.</p>';return;}
+    const match=t=>{const n=normalize(t);return terms.every(term=>n.includes(term));};
+    const sections=[];
+    for(const [id,title] of topics){
+      const ch=chapters[id];
+      (keyPointsData[id]||[]).forEach(p=>{if(match(p))sections.push({id,sid:'keypoints',title,stitle:'נקודות מפתח',text:p});});
+      for(const [sid,stitle,paragraphs] of ch.sections){
+        const text=paragraphs.join(' ');
+        if(match(stitle+' '+text))sections.push({id,sid,title,stitle,text:match(text)?paragraphs.find(p=>terms.some(t=>normalize(p).includes(t)))||text:text});
+      }
+    }
+    const qs=questions.filter(x=>match(x.q+' '+x.a.join(' ')+' '+x.e));
+    const secHtml=sections.slice(0,40).map(r=>'<li><a href="#topic/'+r.id+'/read/'+r.sid+'"><strong>'+safe(r.title)+' · '+safe(r.stitle)+'</strong></a><p>'+snippet(r.text,terms)+'</p></li>').join('');
+    const qHtml=qs.slice(0,40).map(x=>'<li><details><summary>'+snippet(x.q,terms)+' <small>('+safe(scopeTitle(x.topic))+')</small></summary><p><strong>תשובה: '+letters[x.k]+'. '+safe(x.a[x.k])+'</strong></p><p>'+safe(x.e)+'</p></details></li>').join('');
+    results.innerHTML=(sections.length||qs.length?'':'<p class="muted">לא נמצאו תוצאות. נסו מילה אחרת או כתיב אחר (למשל באנגלית).</p>')+(sections.length?'<h2>בסיכומים ('+sections.length+')</h2><ul class="results">'+secHtml+'</ul>':'')+(qs.length?'<h2>בשאלות ('+qs.length+')</h2><ul class="results">'+qHtml+'</ul>':'');
+  }
+  form.onsubmit=e=>{e.preventDefault();history.replaceState(null,'','#search/'+encodeURIComponent(input.value.trim()));run(input.value);};
+  let timer;input.oninput=()=>{clearTimeout(timer);timer=setTimeout(()=>run(input.value),200);};
+  if(q)run(q);
+  input.focus();
+}
 function render(){
-  const [page,id,tab]=location.hash.slice(1).split('/');
-  const navTarget=page==='exams'?'#exams':page==='practice'?'#practice':'#home';
+  const [page,id,tab,extra]=location.hash.slice(1).split('/');
+  const navTarget=page==='exams'?'#exams':page==='practice'?'#practice':page==='search'?'#search':'#home';
   for(const link of document.querySelectorAll('.site-header nav a')){
     if(link.hash===navTarget)link.setAttribute('aria-current','page');
     else link.removeAttribute('aria-current');
   }
-  if(page==='topic')topic(id,tab==='practice');
+  if(page==='topic'){
+    topic(id,tab==='practice');
+    if(tab==='read'&&extra){const s=document.getElementById(extra);if(s){s.scrollIntoView({block:'start'});s.focus({preventScroll:true});s.classList.add('flash');}}
+  }
   else if(page==='exams')exams(id);
   else if(page==='practice')mixedPage(id);
+  else if(page==='search')searchPage(id);
   else home();
-  const title=page==='topic'?scopeTitle(id):page==='exams'&&id?scopeTitle(id):page==='exams'?'שחזורי בחינות':page==='practice'?'תרגול מעורב':'';
+  const title=page==='topic'?scopeTitle(id):page==='exams'&&id?scopeTitle(id):page==='exams'?'שחזורי בחינות':page==='practice'?'תרגול מעורב':page==='search'?'חיפוש':'';
   document.title=(title?title+' | ':'')+'אא״ג | מחברת קלינית';
 }
 document.querySelector('.skip').addEventListener('click',event=>{
   event.preventDefault();main.focus();main.scrollIntoView({block:'start'});
 });
 window.addEventListener('hashchange',()=>{
-  render();main.focus({preventScroll:true});window.scrollTo(0,0);
+  const deep=/^#topic\/[^/]+\/read\//.test(location.hash);
+  if(!deep)window.scrollTo(0,0);
+  render();
+  if(!deep&&!location.hash.startsWith('#search'))main.focus({preventScroll:true});
 });
 render();

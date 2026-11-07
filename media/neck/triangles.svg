@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 455" role="img" aria-labelledby="title">
+<title id="title">משולשי הצוואר במבט מהצד</title>
+<rect width="740" height="455" rx="16" fill="#f8f6ef"/>
+<path d="M279 75Q309 28 381 34Q485 34 523 105Q548 146 524 201L502 252Q503 288 565 344Q599 368 645 388L643 410H150L166 364Q204 349 237 319L237 214Q202 210 199 190L193 166L175 159L199 125Q209 91 243 76Z" fill="#efe0d0" stroke="#715b4d" stroke-width="3"/>
+<path d="M215 191Q233 205 254 208L375 167L237 326L237 214Z" fill="#e7bd91" stroke="#905329" stroke-width="3"/>
+<path d="M384 169L255 332Q372 357 547 335Q510 305 479 270Z" fill="#b8d6cc" stroke="#387268" stroke-width="3"/>
+<path d="M378 166Q326 222 296 261L230 343L253 354L401 176Z" fill="#496e78" stroke="#294e58" stroke-width="2"/>
+<path d="M480 270Q514 311 548 335" fill="none" stroke="#387268" stroke-width="7"/>
+<path d="M255 332Q372 357 547 335" fill="none" stroke="#715b4d" stroke-width="7"/>
+<path d="M365 123Q406 94 422 132Q428 162 395 177Q369 183 369 157Q387 160 396 145Q400 129 386 131" fill="none" stroke="#715b4d" stroke-width="3"/>
+<g font-family="Arial,sans-serif" font-size="22" font-weight="700" text-anchor="middle">
+<text x="268" y="226" fill="#5e2e17">קדמי</text><text x="405" y="309" fill="#174a43">אחורי</text>
+<text x="160" y="293" fill="#294e58">SCM</text><text x="590" y="278" fill="#174a43">טרפז</text><text x="505" y="383" fill="#5e493b">עצם הבריח</text>
+</g>
+<path d="M190 286h98M561 274l-64 22M505 362v-21" fill="none" stroke="#455956" stroke-width="2"/>
+</svg>

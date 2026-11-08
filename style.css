@@ -194,3 +194,5 @@ mark{background:var(--mark,#f3dfa6);color:inherit;padding:0 1px}
 .reading article ul.points li::marker{color:var(--rust)}
 .reading article p.remember{background:var(--pale);border-inline-start:4px solid var(--green);padding:10px 14px;font-size:1rem!important;line-height:1.7!important}
 .reading article p.remember strong{color:var(--green)}
+.clinical-figure .credit{display:block;margin-top:4px;font-size:.75rem!important;color:#6b7a74}
+.clinical-figure .credit a{color:inherit}

@@ -124,7 +124,7 @@ function sectionBody(blocks){
   return output;
 }
 function figure(id){
-  return (chapters[activeTopic].figures?.[id] || []).map(f=>'<figure class="clinical-figure"><img src="'+safe(f.src)+'" alt="'+safe(f.title)+'" loading="lazy" decoding="async"><figcaption><strong>'+safe(f.title)+'</strong><span>'+safe(f.caption)+'</span>'+(f.slide?'<small class="source">מצגת הקורס · שקופית '+f.slide+'</small>':'')+'</figcaption></figure>').join('');
+  return (chapters[activeTopic].figures?.[id] || []).map(f=>'<figure class="clinical-figure"><img src="'+safe(f.src)+'" alt="'+safe(f.title)+'" loading="lazy" decoding="async"><figcaption><strong>'+safe(f.title)+'</strong><span>'+safe(f.caption)+'</span>'+(f.slide?'<small class="source">מצגת הקורס · שקופית '+f.slide+'</small>':'')+(f.credit?'<small class="source credit"><a href="'+safe(f.credit.page)+'" target="_blank" rel="noopener">'+safe(f.credit.text)+'</a> · '+safe(f.credit.license)+'</small>':'')+'</figcaption></figure>').join('');
 }
 function readingSection(id,paragraphs){
   if((activeTopic==='neck'&&id==='map')||(activeTopic==='sinuses'&&id==='0')){

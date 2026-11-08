@@ -176,3 +176,11 @@ mark{background:#f3dfa6;color:inherit;padding:0 1px}
 .muted{color:var(--muted)}
 @keyframes flash{from{background:var(--pale)}to{background:transparent}}.flash{animation:flash 2s ease-out}
 @media(max-width:720px){.list-head{flex-direction:column;align-items:stretch}.search-form.compact{max-width:none}}
+
+/* summary formatting */
+.reading article h3{font-size:1.12rem;margin:22px 0 6px}
+.reading article ul.points{margin:8px 0 14px;padding-inline-start:22px}
+.reading article ul.points li{font-size:1.04rem;line-height:1.75;margin-block:5px}
+.reading article ul.points li::marker{color:var(--rust)}
+.reading article p.remember{background:var(--pale);border-inline-start:4px solid var(--green);padding:10px 14px;font-size:1rem!important;line-height:1.7!important}
+.reading article p.remember strong{color:var(--green)}

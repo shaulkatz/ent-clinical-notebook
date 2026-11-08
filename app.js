@@ -98,22 +98,30 @@ function presentationLink(topicId=activeTopic){
     ? '<a href="'+presentationPath(topicId)+'" target="_blank" rel="noopener">מצגת הפרק במודל</a> <small>(דורש התחברות לחשבון האוניברסיטה)</small>'
     : '<a href="'+presentationPath(topicId)+'" download>הורדת מצגת הפרק (PowerPoint)</a>';
 }
+// מילה מודגשת: **טקסט**
+function inline(t){return safe(t).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');}
+// בלוקים: "|" שורת טבלה, "- " פריט ברשימה, "### " כותרת משנה, "! " תיבת "לזכור", אחרת פסקה
 function sectionBody(blocks){
-  let output='', tableOpen=false;
+  let output='', open=null;
+  const close=()=>{if(open==='table')output+='</table></div>';if(open==='list')output+='</ul>';open=null;};
   for(const block of blocks){
     if(block.startsWith('|')){
       const cells=block.slice(1,-1).split('|');
-      const tag=tableOpen?'td':'th';
-      if(!tableOpen)output+='<div class="table-scroll" tabindex="0" role="region" aria-label="טבלת השוואה"><table>';
-      output+='<tr>'+cells.map(cell=>'<'+tag+(tag==='th'?' scope="col"':'')+'>'+safe(cell)+'</'+tag+'>').join('')+'</tr>';
-      tableOpen=true;
+      const tag=open==='table'?'td':'th';
+      if(open!=='table'){close();output+='<div class="table-scroll" tabindex="0" role="region" aria-label="טבלת השוואה"><table>';open='table';}
+      output+='<tr>'+cells.map(cell=>'<'+tag+(tag==='th'?' scope="col"':'')+'>'+inline(cell)+'</'+tag+'>').join('')+'</tr>';
+    } else if(block.startsWith('- ')){
+      if(open!=='list'){close();output+='<ul class="points">';open='list';}
+      output+='<li>'+inline(block.slice(2))+'</li>';
     } else {
-      if(tableOpen)output+='</table></div>';
-      tableOpen=false;
-      output+='<p>'+safe(block)+'</p>';
+      close();
+      if(block.startsWith('### '))output+='<h3>'+inline(block.slice(4))+'</h3>';
+      else if(block.startsWith('! '))output+='<p class="remember"><strong>לזכור:</strong> '+inline(block.slice(2))+'</p>';
+      else output+='<p>'+inline(block)+'</p>';
     }
   }
-  return output+(tableOpen?'</table></div>':'');
+  close();
+  return output;
 }
 function figure(id){
   return (chapters[activeTopic].figures?.[id] || []).map(f=>'<figure class="clinical-figure"><img src="'+safe(f.src)+'" alt="'+safe(f.title)+'" loading="lazy" decoding="async"><figcaption><strong>'+safe(f.title)+'</strong><span>'+safe(f.caption)+'</span>'+(f.slide?'<small class="source">מצגת הקורס · שקופית '+f.slide+'</small>':'')+'</figcaption></figure>').join('');
@@ -315,6 +323,7 @@ document.addEventListener('keydown',event=>{
 });
 function normalize(t){return String(t).toLowerCase().replace(/[\u0591-\u05C7]/g,'').replace(/[״"׳'־\-]/g,' ').replace(/\s+/g,' ');}
 function snippet(text,terms){
+  text=String(text).replace(/\*\*/g,'').replace(/(^|\s)(- |### |! )/g,'$1').replace(/^\||\|$/g,'').replace(/\|/g,' · ');
   const n=normalize(text);let at=-1;
   for(const term of terms){const i=n.indexOf(term);if(i>=0&&(at<0||i<at))at=i;}
   const start=Math.max(0,at-60),raw=text.slice(start,start+220);

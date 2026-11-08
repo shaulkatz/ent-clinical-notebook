@@ -162,7 +162,7 @@ function exams(id){
   if(exam&&questions.some(q=>q.topic===exam.id)){
     activeTopic=exam.id;
     const s=stats(questionsOf(exam.id));
-    main.innerHTML='<a class="back" href="#exams">חזרה לשחזורים</a><header class="chapter-header"><h1>'+safe(exam.title)+'</h1><p>'+safe(exam.origin)+'</p><p>זהו תרגול מעובד מתוך השחזור. המספור במשוב מפנה לשאלה המקורית.</p><div class="chapter-progress">'+meter(s,exam.title)+'<span>'+statLine(s)+'</span></div></header><div id="practice"></div>';
+    main.innerHTML='<a class="back" href="#exams">חזרה לשחזורים</a><header class="chapter-header"><h1>'+safe(exam.title)+'</h1><p>'+safe(exam.origin)+'</p><p>השאלות בנוסח השחזור המקורי, עם הסבר לכל אפשרות. המספור במשוב מפנה לשאלה המקורית.</p><div class="chapter-progress">'+meter(s,exam.title)+'<span>'+statLine(s)+'</span></div></header><div id="practice"></div>';
     practice();
     return;
   }

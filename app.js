@@ -102,13 +102,15 @@ function presentationLink(topicId=activeTopic){
 function inline(t){return safe(t).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');}
 // בלוקים: "|" שורת טבלה, "- " פריט ברשימה, "### " כותרת משנה, "! " תיבת "לזכור", אחרת פסקה
 function sectionBody(blocks){
-  let output='', open=null;
+  let output='', open=null, columns=0;
   const close=()=>{if(open==='table')output+='</table></div>';if(open==='list')output+='</ul>';open=null;};
   for(const block of blocks){
     if(block.startsWith('|')){
       const cells=block.slice(1,-1).split('|');
+      // טבלה חדשה מתחילה כשמספר העמודות משתנה, גם אם שתי טבלאות צמודות בטקסט
+      if(open==='table'&&cells.length!==columns)close();
       const tag=open==='table'?'td':'th';
-      if(open!=='table'){close();output+='<div class="table-scroll" tabindex="0" role="region" aria-label="טבלת השוואה"><table>';open='table';}
+      if(open!=='table'){close();output+='<div class="table-scroll" tabindex="0" role="region" aria-label="טבלת השוואה"><table>';open='table';columns=cells.length;}
       output+='<tr>'+cells.map(cell=>'<'+tag+(tag==='th'?' scope="col"':'')+'>'+inline(cell)+'</'+tag+'>').join('')+'</tr>';
     } else if(block.startsWith('- ')){
       if(open!=='list'){close();output+='<ul class="points">';open='list';}

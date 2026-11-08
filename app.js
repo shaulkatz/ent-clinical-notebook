@@ -246,12 +246,34 @@ function answer(index){
   document.querySelector('.answers').focus({preventScroll:true});
   window.scrollTo(position);
 }
+let repeatIndex=null;
+function questionTokens(q){
+  const words=normalize(q.q+' '+q.a.join(' ')).replace(/[^א-תa-z0-9 ]/g,' ').split(' ').map(w=>w.replace(/^[והבלמשכ](?=[א-ת]{3})/,''));
+  return new Set(words.filter(w=>w.length>1));
+}
+function similar(a,b){let n=0;for(const w of a)if(b.has(w))n++;return n/Math.min(a.size,b.size);}
+function appearsAlso(q){
+  if(!repeatIndex){
+    repeatIndex=new Map();
+    const pool=questions.filter(x=>reconstructionSets.some(s=>s.id===x.topic)).map(x=>[x,questionTokens(x)]);
+    for(const [x] of pool)repeatIndex.set(x.id,[]);
+    for(let i=0;i<pool.length;i++)for(let j=i+1;j<pool.length;j++){
+      const [x,tx]=pool[i],[y,ty]=pool[j];
+      if(x.topic===y.topic)continue;
+      const sameAnswer=similar(questionTokens({q:x.a[x.k],a:[]}),questionTokens({q:y.a[y.k],a:[]}))>=.5;
+      if(!sameAnswer&&similar(tx,ty)<.85)continue;
+      if(similar(tx,ty)>=.6){repeatIndex.get(x.id).push(y.topic);repeatIndex.get(y.id).push(x.topic);}
+    }
+  }
+  return [...new Set(repeatIndex.get(q.id)||[])].map(scopeTitle);
+}
 function feedback(q){
   const exam=reconstructionSets.find(item=>item.id===q.topic);
   const source=exam
     ? '<p class="source">שאלה '+q.number+' במקור'+(q.page?', עמ׳ '+q.page:'')+(exam.url?' · <a href="'+safe(exam.url)+'" target="_blank" rel="noopener">תיקיית המקור</a>':'')+'</p>'
     : '<p class="source">'+presentationLink(q.topic)+' · <a href="#topic/'+q.topic+'">לסיכום הפרק</a></p>';
-  return '<section class="feedback"><p class="explanation">'+safe(q.e)+'</p>'+(q.clarification?'<p class="explanation">'+safe(q.clarification)+'</p>':'')+'<h3>הסבר לכל אפשרות</h3><ol class="review">'+q.a.map((a,i)=>'<li'+(i===q.k?' class="is-correct"':'')+'><strong>'+letters[i]+'. '+safe(a)+'</strong><p>'+safe(q.x[i])+'</p></li>').join('')+'</ol>'+source+'</section>';
+  const also=appearsAlso(q);
+  return '<section class="feedback">'+(also.length?'<p class="also">⭐ שאלה חוזרת: הופיעה גם ב'+also.map(t=>safe(t)).join(', ')+'</p>':'')+'<p class="explanation">'+safe(q.e)+'</p>'+(q.clarification?'<p class="explanation">'+safe(q.clarification)+'</p>':'')+'<h3>הסבר לכל אפשרות</h3><ol class="review">'+q.a.map((a,i)=>'<li'+(i===q.k?' class="is-correct"':'')+'><strong>'+letters[i]+'. '+safe(a)+'</strong><p>'+safe(q.x[i])+'</p></li>').join('')+'</ol>'+source+'</section>';
 }
 function breakdownTable(caption,rows){
   return '<h3>'+caption+'</h3><div class="table-scroll" tabindex="0" role="region" aria-label="'+caption+'"><table><thead><tr><th scope="col">נושא</th><th scope="col">נכונות בסבב</th><th scope="col">שאלות שלא נכללו</th></tr></thead><tbody>'+rows+'</tbody></table></div>';

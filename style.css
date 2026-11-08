@@ -196,3 +196,4 @@ mark{background:var(--mark,#f3dfa6);color:inherit;padding:0 1px}
 .reading article p.remember strong{color:var(--green)}
 .clinical-figure .credit{display:block;margin-top:4px;font-size:.75rem!important;color:#6b7a74}
 .clinical-figure .credit a{color:inherit}
+.feedback .also{margin:0 0 .8rem;padding:.5rem .8rem;border-radius:8px;background:var(--accent-soft,rgba(200,150,40,.14));font-weight:600;font-size:.95rem}

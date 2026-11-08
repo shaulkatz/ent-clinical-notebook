@@ -11,10 +11,7 @@ const reconstructionSets = [
   url:'https://drive.google.com/drive/u/1/folders/1S67oYfADPazi89c9U0KZQDz0GItCJw5s', total:25},
  {id:'assaf-form-2', title:'בוחן אסף הרופא · 30.5.2024 · נוסח 2',
   origin:'נמצא בתיקיית מחזור 2026. בגוף המסמך מופיעים נוסח 2 ושנת הבחינה 2023–2024. המקור מסמן את התשובות כלא ודאיות. כל 25 השאלות נקלטו ונבדקו. בשאלות 5 ו־13 התשובה כאן שונה מהסימון במקור, וההסבר מפרט למה. בשאלות 18 ו־19 יש הערה על הסימון.',
-  url:'https://drive.google.com/drive/u/1/folders/13qTWs0xgXcb-sua9iGBvW7sH9JXXT2_e', total:25},
- {id:'cohort-2028-final', title:'בוחן סיום · תיקיית מחזור 2028',
-  origin:'הקובץ ״בוחן סיום 2028.pdf״ אותר בתיקיית ״שחזור בוחן סיום״. שנת הבחינה והנוסח עדיין לא אומתו מתוך המסמך.',
-  url:'https://drive.google.com/drive/u/1/folders/1M4QW_ku6C0nnf7sVN2O0O2rrkv6wduTP'}
+  url:'https://drive.google.com/drive/u/1/folders/13qTWs0xgXcb-sua9iGBvW7sH9JXXT2_e', total:25}
 ];
 
 const reconItems = [

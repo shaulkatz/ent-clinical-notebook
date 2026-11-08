@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" font-family="Arial, sans-serif" direction="rtl">
+  <rect width="760" height="520" fill="#fffefa"/>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#984629"/></marker>
+    <g id="head">
+      <ellipse cx="0" cy="0" rx="62" ry="74" fill="#f3efe4" stroke="#192c2b" stroke-width="2.5"/>
+      <path d="M-62 -10 q-18 4 -16 24 q2 18 16 18" fill="#f3efe4" stroke="#192c2b" stroke-width="2.5"/>
+      <path d="M62 -10 q18 4 16 24 q-2 18 -16 18" fill="#f3efe4" stroke="#192c2b" stroke-width="2.5"/>
+      <!-- tuning fork on vertex -->
+      <path d="M-7 -118 v-26 M7 -118 v-26 M-7 -118 q7 10 14 0 M0 -113 v38" stroke="#174a43" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </g>
+  </defs>
+
+  <text x="380" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#192c2b">בדיקות קולן כשיש ירידת שמיעה באוזן ימין</text>
+  <text x="380" y="52" text-anchor="middle" font-size="13" fill="#485c56">הראש מצויר במבט מאחור, כך שימין המטופל הוא ימין התמונה</text>
+
+  <!-- column titles -->
+  <rect x="400" y="66" width="340" height="32" rx="6" fill="#174a43"/>
+  <text x="570" y="88" text-anchor="middle" font-size="16" font-weight="bold" fill="#fffefa">ירידה הולכתית מימין</text>
+  <rect x="20" y="66" width="340" height="32" rx="6" fill="#984629"/>
+  <text x="190" y="88" text-anchor="middle" font-size="16" font-weight="bold" fill="#fffefa">ירידה תחושתית־עצבית מימין</text>
+
+  <!-- row label -->
+  <text x="380" y="122" text-anchor="middle" font-size="15" font-weight="bold" fill="#192c2b">בדיקת Weber (קולן במרכז הראש)</text>
+
+  <!-- conductive head -->
+  <use href="#head" x="570" y="245"/>
+  <text x="495" y="300" text-anchor="middle" font-size="12" fill="#485c56">שמאל</text>
+  <text x="645" y="300" text-anchor="middle" font-size="12" fill="#485c56">ימין</text>
+  <circle cx="648" cy="250" r="9" fill="none" stroke="#174a43" stroke-width="2.5"/>
+  <path d="M582 210 Q630 200 642 238" fill="none" stroke="#984629" stroke-width="3" marker-end="url(#ar)"/>
+  <text x="570" y="345" text-anchor="middle" font-size="14" fill="#192c2b">נשמע חזק יותר <tspan font-weight="bold">בימין</tspan></text>
+  <text x="570" y="364" text-anchor="middle" font-size="12" fill="#485c56">באוזן הפגועה: אין רעש סביבה שמסתיר</text>
+
+  <!-- sensorineural head -->
+  <use href="#head" x="190" y="245"/>
+  <text x="115" y="300" text-anchor="middle" font-size="12" fill="#485c56">שמאל</text>
+  <text x="265" y="300" text-anchor="middle" font-size="12" fill="#485c56">ימין</text>
+  <circle cx="268" cy="250" r="9" fill="none" stroke="#984629" stroke-width="2.5"/>
+  <path d="M178 210 Q130 200 118 238" fill="none" stroke="#984629" stroke-width="3" marker-end="url(#ar)"/>
+  <text x="190" y="345" text-anchor="middle" font-size="14" fill="#192c2b">נשמע חזק יותר <tspan font-weight="bold">בשמאל</tspan></text>
+  <text x="190" y="364" text-anchor="middle" font-size="12" fill="#485c56">באוזן הבריאה: השבלול הימני לא קולט</text>
+
+  <!-- Rinne row -->
+  <line x1="20" y1="388" x2="740" y2="388" stroke="#c9cec1" stroke-width="1.5"/>
+  <text x="380" y="414" text-anchor="middle" font-size="15" font-weight="bold" fill="#192c2b">בדיקת Rinne באוזן ימין (אוויר מול עצם)</text>
+
+  <g>
+    <rect x="420" y="430" width="300" height="70" rx="8" fill="#e9eee4" stroke="#174a43" stroke-width="2"/>
+    <text x="570" y="458" text-anchor="middle" font-size="16" font-weight="bold" fill="#174a43">Rinne שלילי</text>
+    <text x="570" y="482" text-anchor="middle" font-size="13" fill="#192c2b">עצם טובה מאוויר: ההולכה באוויר חסומה</text>
+  </g>
+  <g>
+    <rect x="40" y="430" width="300" height="70" rx="8" fill="#fbefe8" stroke="#984629" stroke-width="2"/>
+    <text x="190" y="458" text-anchor="middle" font-size="16" font-weight="bold" fill="#984629">Rinne חיובי</text>
+    <text x="190" y="482" text-anchor="middle" font-size="13" fill="#192c2b">אוויר טוב מעצם, כמו באוזן תקינה</text>
+  </g>
+</svg>

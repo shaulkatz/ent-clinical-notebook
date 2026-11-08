@@ -377,6 +377,25 @@ function render(){
   const title=page==='topic'?scopeTitle(id):page==='exams'&&id?scopeTitle(id):page==='exams'?'שחזורי בחינות':page==='practice'?'תרגול מעורב':page==='search'?'חיפוש':'';
   document.title=(title?title+' | ':'')+'אא״ג | מחברת קלינית';
 }
+// מעבר בין מצב בהיר לכהה. ברירת המחדל: לפי הגדרת המכשיר. בחירה ידנית נשמרת בדפדפן.
+const themeButton=document.getElementById('theme-toggle');
+const sunIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+const moonIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>';
+const isDark=()=>document.documentElement.dataset.theme?document.documentElement.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+function paintThemeButton(){
+  const dark=isDark();
+  themeButton.innerHTML=dark?sunIcon:moonIcon;
+  themeButton.setAttribute('aria-label',dark?'מעבר למצב בהיר':'מעבר למצב כהה');
+  themeButton.title=themeButton.getAttribute('aria-label');
+}
+themeButton.onclick=()=>{
+  const next=isDark()?'light':'dark';
+  document.documentElement.dataset.theme=next;
+  try{localStorage.setItem('ent-theme',next);}catch{}
+  paintThemeButton();
+};
+matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',paintThemeButton);
+paintThemeButton();
 document.querySelector('.skip').addEventListener('click',event=>{
   event.preventDefault();main.focus();main.scrollIntoView({block:'start'});
 });

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" font-family="Arial, sans-serif" direction="rtl">
+  <rect width="760" height="470" fill="#fffefa"/>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#984629"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#174a43"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#2b5c8a"/></marker>
+  </defs>
+  <text x="380" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#192c2b">הדופן הצידית של האף: לאן מתנקז כל סינוס</text>
+  <text x="380" y="56" text-anchor="middle" font-size="14" fill="#485c56">מבט מהצד, אחרי הסרת המחיצה. קדימה = ימין התמונה</text>
+
+  <!-- nasal cavity outline -->
+  <path d="M120 380 L120 150 Q140 100 220 92 L520 92 Q600 96 650 160 L690 300 Q700 345 660 380 Z" fill="#f3efe4" stroke="#b9b2a0" stroke-width="2"/>
+  <!-- nostril opening -->
+  <path d="M660 380 Q700 345 690 300" fill="none" stroke="#192c2b" stroke-width="3"/>
+  <text x="705" y="395" text-anchor="middle" font-size="13" fill="#485c56">נחיר</text>
+  <!-- choana -->
+  <line x1="120" y1="230" x2="120" y2="380" stroke="#984629" stroke-width="4" stroke-dasharray="6 5"/>
+  <text x="80" y="300" text-anchor="middle" font-size="13" fill="#984629">קואנות</text>
+  <text x="80" y="318" text-anchor="middle" font-size="12" fill="#984629">(לנזופרינקס)</text>
+
+  <!-- turbinates -->
+  <path d="M250 150 Q360 118 470 140 Q420 160 260 166 Z" fill="#c9d6c4" stroke="#174a43" stroke-width="2"/>
+  <text x="360" y="150" text-anchor="middle" font-size="13" fill="#174a43">קונכייה עליונה</text>
+  <path d="M200 208 Q380 168 590 200 Q560 236 220 238 Z" fill="#c9d6c4" stroke="#174a43" stroke-width="2"/>
+  <text x="395" y="216" text-anchor="middle" font-size="14" fill="#174a43">קונכייה אמצעית</text>
+  <path d="M160 300 Q400 258 650 296 Q630 336 180 336 Z" fill="#c9d6c4" stroke="#174a43" stroke-width="2"/>
+  <text x="405" y="306" text-anchor="middle" font-size="14" fill="#174a43">קונכייה תחתונה</text>
+
+  <!-- meatus labels (under each turbinate) -->
+  <text x="300" y="186" text-anchor="middle" font-size="12" fill="#192c2b">מיאטוס עליון</text>
+  <rect x="300" y="244" width="190" height="26" rx="5" fill="#174a43"/>
+  <text x="395" y="262" text-anchor="middle" font-size="13" font-weight="bold" fill="#fffefa">מיאטוס אמצעי</text>
+  <text x="430" y="358" text-anchor="middle" font-size="13" fill="#192c2b">מיאטוס תחתון</text>
+  <text x="185" y="142" text-anchor="middle" font-size="12" fill="#192c2b">רצס ספנו־אתמואידלי</text>
+
+  <!-- sources -->
+  <!-- frontal -->
+  <rect x="560" y="62" width="110" height="26" rx="5" fill="#fffefa" stroke="#984629" stroke-width="2"/>
+  <text x="615" y="80" text-anchor="middle" font-size="13" fill="#984629">סינוס פרונטלי</text>
+  <path d="M580 90 Q540 160 470 246" fill="none" stroke="#984629" stroke-width="2.5" marker-end="url(#ar)"/>
+  <!-- maxillary -->
+  <rect x="610" y="214" width="120" height="26" rx="5" fill="#fffefa" stroke="#984629" stroke-width="2"/>
+  <text x="670" y="232" text-anchor="middle" font-size="13" fill="#984629">סינוס מקסילרי</text>
+  <path d="M612 236 Q560 252 492 258" fill="none" stroke="#984629" stroke-width="2.5" marker-end="url(#ar)"/>
+  <!-- anterior ethmoid -->
+  <rect x="420" y="100" width="130" height="24" rx="5" fill="#fffefa" stroke="#984629" stroke-width="2"/>
+  <text x="485" y="117" text-anchor="middle" font-size="12" fill="#984629">אתמואיד קדמי</text>
+  <path d="M470 126 Q440 180 420 244" fill="none" stroke="#984629" stroke-width="2.5" marker-end="url(#ar)"/>
+  <!-- posterior ethmoid -->
+  <rect x="240" y="96" width="120" height="24" rx="5" fill="#fffefa" stroke="#174a43" stroke-width="2"/>
+  <text x="300" y="113" text-anchor="middle" font-size="12" fill="#174a43">אתמואיד אחורי</text>
+  <path d="M300 122 L300 172" fill="none" stroke="#174a43" stroke-width="2.5" marker-end="url(#ag)"/>
+  <!-- sphenoid -->
+  <rect x="40" y="70" width="110" height="26" rx="5" fill="#fffefa" stroke="#174a43" stroke-width="2"/>
+  <text x="95" y="88" text-anchor="middle" font-size="13" fill="#174a43">סינוס ספנואידלי</text>
+  <path d="M120 98 Q150 110 165 116" fill="none" stroke="#174a43" stroke-width="2.5" marker-end="url(#ag)"/>
+  <!-- nasolacrimal -->
+  <rect x="560" y="400" width="140" height="26" rx="5" fill="#fffefa" stroke="#2b5c8a" stroke-width="2"/>
+  <text x="630" y="418" text-anchor="middle" font-size="13" fill="#2b5c8a">צינור הדמעות</text>
+  <path d="M580 402 Q520 380 480 360" fill="none" stroke="#2b5c8a" stroke-width="2.5" marker-end="url(#ab)"/>
+
+  <text x="380" y="455" text-anchor="middle" font-size="13" fill="#485c56">למיאטוס האמצעי מתנקזים שלושה: פרונטלי, מקסילרי ואתמואיד קדמי</text>
+</svg>

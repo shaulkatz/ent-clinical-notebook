@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" font-family="Arial, sans-serif" direction="rtl">
+  <rect width="1000" height="420" fill="#fffefa"/>
+  <defs>
+    <pattern id="eth" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#efe9dc"/><path d="M0 10 10 0" stroke="#b9b2a0" stroke-width="1.5"/>
+    </pattern>
+    <!-- one orbit, top-down view: front (eyelids) at top, apex at bottom, ethmoid medial (left) -->
+    <g id="orbit">
+      <rect x="14" y="52" width="40" height="120" rx="4" fill="url(#eth)" stroke="#9c9480" stroke-width="1.5"/>
+      <path d="M60 50 L184 50 L132 196 L108 196 Z" fill="#f6f3ec" stroke="#7d6f55" stroke-width="2.5"/>
+      <path d="M60 50 Q122 20 184 50" fill="#f3e6dc" stroke="#c9b9a9" stroke-width="1.5"/>
+      <path d="M60 50 L184 50" stroke="#174a43" stroke-width="2" stroke-dasharray="5 4"/>
+      <circle cx="122" cy="84" r="30" fill="#ffffff" stroke="#192c2b" stroke-width="2"/>
+      <circle cx="122" cy="58" r="8" fill="#5b7f99"/>
+      <path d="M120 114 L120 192" stroke="#c9b9a9" stroke-width="5"/>
+    </g>
+  </defs>
+
+  <text x="500" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#192c2b">סיווג Chandler: איך זיהום מהאתמואיד מתקדם לארובה</text>
+  <text x="500" y="52" text-anchor="middle" font-size="13" fill="#485c56">מבט מלמעלה על ארובה אחת: העפעף למעלה, האתמואיד (מקווקו) בצד הפנימי, והקו המקווקו הירוק הוא הספטום</text>
+
+  <!-- stage 1 (rightmost) -->
+  <g transform="translate(800 70)">
+    <use href="#orbit"/>
+    <path d="M60 50 Q122 20 184 50 Z" fill="#e0805c" opacity=".75"/>
+    <text x="100" y="230" text-anchor="middle" font-size="15" font-weight="bold" fill="#192c2b">1. פרה־ספטלית</text>
+    <text x="100" y="252" text-anchor="middle" font-size="12" fill="#485c56">בצקת עפעף בלבד</text>
+    <text x="100" y="270" text-anchor="middle" font-size="12" fill="#485c56">ראייה ותנועות תקינות</text>
+  </g>
+  <!-- stage 2 -->
+  <g transform="translate(605 70)">
+    <use href="#orbit"/>
+    <path d="M62 52 L182 52 L132 194 L108 194 Z" fill="#e0805c" opacity=".35"/>
+    <circle cx="122" cy="84" r="30" fill="#ffffff" stroke="#192c2b" stroke-width="2"/>
+    <circle cx="122" cy="58" r="8" fill="#5b7f99"/>
+    <text x="100" y="230" text-anchor="middle" font-size="15" font-weight="bold" fill="#192c2b">2. צלוליטיס אורביטלית</text>
+    <text x="100" y="252" text-anchor="middle" font-size="12" fill="#485c56">דלקת מפושטת בתוך הארובה</text>
+    <text x="100" y="270" text-anchor="middle" font-size="12" fill="#485c56">בלט והגבלה בתנועות</text>
+  </g>
+  <!-- stage 3 -->
+  <g transform="translate(410 70)">
+    <use href="#orbit"/>
+    <path d="M62 56 Q86 100 106 186 L114 186 Q90 100 74 56 Z" fill="#c4532f" stroke="#984629" stroke-width="1.5"/>
+    <text x="100" y="230" text-anchor="middle" font-size="15" font-weight="bold" fill="#192c2b">3. אבצס תת־פריאוסטלי</text>
+    <text x="100" y="252" text-anchor="middle" font-size="12" fill="#485c56">מוגלה בין הדופן לפריאוסטאום</text>
+    <text x="100" y="270" text-anchor="middle" font-size="12" fill="#485c56">הראייה יכולה להישמר</text>
+  </g>
+  <!-- stage 4 -->
+  <g transform="translate(215 70)">
+    <use href="#orbit"/>
+    <ellipse cx="122" cy="146" rx="24" ry="28" fill="#c4532f" stroke="#984629" stroke-width="1.5"/>
+    <text x="100" y="230" text-anchor="middle" font-size="15" font-weight="bold" fill="#192c2b">4. אבצס אורביטלי</text>
+    <text x="100" y="252" text-anchor="middle" font-size="12" fill="#485c56">מוגלה בתוך הארובה</text>
+    <text x="100" y="270" text-anchor="middle" font-size="12" fill="#485c56">אופתלמופלגיה, פגיעה בראייה</text>
+  </g>
+  <!-- stage 5 -->
+  <g transform="translate(20 70)">
+    <use href="#orbit"/>
+    <rect x="94" y="200" width="52" height="20" rx="5" fill="#c4532f" stroke="#984629" stroke-width="1.5"/>
+    <path d="M146 210 h30" stroke="#984629" stroke-width="2.5" stroke-dasharray="4 3"/>
+    <text x="100" y="242" text-anchor="middle" font-size="15" font-weight="bold" fill="#192c2b">5. תרומבוזיס קברנוזי</text>
+    <text x="100" y="262" text-anchor="middle" font-size="12" fill="#485c56">הקריש מאחורי הארובה</text>
+    <text x="100" y="280" text-anchor="middle" font-size="12" fill="#485c56">לעתים שתי העיניים</text>
+  </g>
+
+  <!-- progression arrow -->
+  <path d="M960 400 L50 400" stroke="#984629" stroke-width="2.5"/>
+  <path d="M50 400 l12 -7 v14 z" fill="#984629"/>
+  <text x="500" y="390" text-anchor="middle" font-size="13" fill="#984629">חומרה עולה. הגבלת תנועה, בלט או ירידת ראייה = הזיהום עבר את הספטום</text>
+</svg>
